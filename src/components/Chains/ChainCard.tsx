@@ -23,7 +23,7 @@ export const ChainCard = (props: ChainCardProps) => {
     const chainQuery = useQuery(`chainQuery:${kind}:${name}`, () => getChainStatus(url, kind), {
         refetchInterval: 1000 * 60,
         refetchIntervalInBackground: true,
-        refetchOnWindowFocus: false,
+        refetchOnWindowFocus: true,
         onSuccess: (data) => {
             const { levelIdentifier } = getChainResponseIdentifier(kind)
             if(typeof data.data[levelIdentifier] === "number") {

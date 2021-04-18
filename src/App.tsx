@@ -3,36 +3,42 @@ import {
   ChakraProvider,
   Box,
   Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
   theme,
+  Flex,
+  Spacer,
+  IconButton,
 } from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+import { FaSpinner } from "react-icons/fa"
+import { QueryClient, QueryClientProvider,  } from "react-query"
+import { ReactQueryDevtools } from 'react-query/devtools'
 
-export const App = () => (
-  <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
-          </Link>
-        </VStack>
-      </Grid>
-    </Box>
-  </ChakraProvider>
-)
+import TzData from "./data/chains.json"
+import { ChainData } from "./components/Chains"
+import { Chains } from "./components/Chains"
+import { ColorModeSwitcher } from "./ColorModeSwitcher"
+
+
+export const App = () => {
+  const queryClient = new QueryClient()
+  
+  const handleRefresh = async () => {
+    await queryClient.refetchQueries()  
+  }
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider theme={theme}>
+        <Box fontSize="lg" minH="100vh" p={8}>
+          <Flex pb={4}>
+            <Text fontSize="xl" fontWeight="semibold">Tezos Mainnet Status Sync</Text>
+            <Spacer />
+            <IconButton colorScheme="green" aria-label="Refresh" icon={<FaSpinner />} onClick={handleRefresh} />
+            <ColorModeSwitcher justifySelf="flex-end" />
+          </Flex>
+          <Chains data={TzData as unknown as ChainData[]}/>
+        </Box>
+      </ChakraProvider>
+      <ReactQueryDevtools />
+    </QueryClientProvider>
+  )
+}

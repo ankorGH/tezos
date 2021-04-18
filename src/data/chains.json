@@ -1,0 +1,47 @@
+[
+    {   
+        "title": "TzStats Tezos Nodes",
+        "cards": [
+            {    
+                "title": "Mainnet",    
+                "kind": "tezos-node",    
+                "url": "https://rpc.tzstats.com"
+           }
+        ]  
+    },
+    {   
+        "title": "TzStats Indexers",   
+        "cards": [
+            {    
+                "title": "Mainnet",    
+                "kind": "tzindex",   
+                 "url": "https://api.tzstats.com"   
+            },
+            {    
+                "title": "Mainnet Staging",    
+                "kind": "tzindex",    
+                "url": "https://api.staging.tzstats.com"   
+            }
+        ]   
+    },
+    {   
+        "title": "3rd Party APIs",   
+        "cards": [
+            {    
+                "title": "Giganode",    
+                "kind": "tezos-node",    
+                "url": "https://mainnet-tezos.giganode.io"   
+            },
+            {    
+                "title": "ECAD Labs",    
+                "kind": "tezos-node",   
+                "url": "https://api.tez.ie/rpc/mainnet"
+            },
+            {    
+                "title": "Blockscale (TF)",    
+                "kind": "tezos-node",    
+                "url": "https://rpc.tzbeta.net"    
+            }
+        ]   
+    }
+]
